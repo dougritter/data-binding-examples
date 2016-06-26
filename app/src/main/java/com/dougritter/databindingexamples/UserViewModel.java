@@ -12,6 +12,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 public class UserViewModel extends BaseObservable implements Observable {
+    public static final String IMAGE_URL = "http://weloveicons.s3.amazonaws.com/icons/100921_android.png";
     private User user;
     private boolean shouldPassNull;
     private ChangerThread changerThread;
@@ -56,11 +57,19 @@ public class UserViewModel extends BaseObservable implements Observable {
     }
 
     public void setUser(User user) {
+        setUserImageUrl(user);
         this.user = user;
         notifyPropertyChanged(com.dougritter.databindingexamples.BR.user);
         notifyPropertyChanged(com.dougritter.databindingexamples.BR.isAdult);
 
     }
+
+    public void setUserImageUrl(User user) {
+        if (user != null) {
+            user.setImageUrl(IMAGE_URL);
+        }
+    }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventMakeChanges eventMakeChanges) {

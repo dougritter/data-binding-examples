@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="com.dougritter.databindingexamples.R" />
         <variable
             name="viewmodel"
             type="com.dougritter.databindingexamples.UserViewModel" />
@@ -56,6 +57,15 @@
             android:layout_marginTop="@dimen/app_default_elements_margin"
             android:layout_height="wrap_content"
             android:text="@string/start_stop_thread_button"/>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_marginTop="@dimen/app_default_elements_margin"
+            android:layout_gravity="center_horizontal"
+            android:src="@{viewmodel.user.imageUrl}"
+            app:placeHolder="@{R.drawable.no_image_available}"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
 
     </LinearLayout>
 

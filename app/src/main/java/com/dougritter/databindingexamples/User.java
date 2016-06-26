@@ -10,6 +10,7 @@ public class User {
     private String name;
     private String lastName;
     private int age;
+    private String imageUrl;
 
     public User(String name, String lastName, int age) {
         this.name = name;
@@ -39,5 +40,13 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
