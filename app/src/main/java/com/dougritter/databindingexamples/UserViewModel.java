@@ -6,9 +6,18 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 public class UserViewModel extends BaseObservable {
     private User user;
     private boolean shouldPassNull;
+    private ChangerThread changerThread;
+
+    public UserViewModel() {
+        EventBus.getDefault().register(this);
+    }
 
     public void onClickMakeChanges(@NonNull final View view) {
         if (!shouldPassNull) {
@@ -26,6 +35,19 @@ public class UserViewModel extends BaseObservable {
         }
     }
 
+    public void onClickStartStopThread(@NonNull final View view) {
+        if (changerThread == null) {
+            changerThread = new ChangerThread();
+        }
+
+        if (changerThread.threadIsRunning()) {
+            changerThread.stopThread();
+        } else {
+            changerThread.startThread();
+        }
+    }
+
+
     @Bindable
     public User getUser() {
         return user;
@@ -34,5 +56,19 @@ public class UserViewModel extends BaseObservable {
     public void setUser(User user) {
         this.user = user;
         notifyPropertyChanged(com.dougritter.databindingexamples.BR.user);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(EventMakeChanges eventMakeChanges) {
+        if (user == null) {
+            setUser(createNonDefaultUser());
+        } else {
+            setUser(null);
+        }
+
+    }
+
+    public User createNonDefaultUser() {
+        return new User(User.NON_DEFAULT_NAME, User.NON_DEFAULT_LAST_NAME);
     }
 }

@@ -2,6 +2,7 @@
     <string name="app_name">Data Binding Examples</string>
 
     <string name="change_data_button">Make changes</string>
+    <string name="start_stop_thread_button">Start/Stop Thread</string>
     <string name="default_user_name">João</string>
     <string name="default_user_lastname">da Silva</string>
 
