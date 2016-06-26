@@ -6,13 +6,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ChangerThread {
-
     private Timer timer;
     private boolean isRunning;
 
-    public ChangerThread() {
-
-    }
+    public ChangerThread() {}
 
     public boolean threadIsRunning() {
         return isRunning;
@@ -35,6 +32,7 @@ public class ChangerThread {
 
     public void stopThread() {
         timer.cancel();
+        timer = null;
         isRunning = false;
     }
 
