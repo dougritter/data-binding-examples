@@ -6,18 +6,8 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
-public class ImageUtil {
-
-    public static final String TAG = ImageUtil.class.getSimpleName();
-
-    /*@BindingAdapter("android:src")
-    public static void setImageUrl(ImageView view, String url) {
-        Picasso.with(view.getContext())
-                .load(url)
-                .fit()
-                .into(view);
-    }
-*/
+public class AppAdapters {
+    public static final String TAG = AppAdapters.class.getSimpleName();
 
     @BindingAdapter(value = {"android:src", "placeHolder"}, requireAll = false)
     public static void setImageUrl(ImageView view, String url, int placeHolder) {
